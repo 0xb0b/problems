@@ -7,6 +7,15 @@ logging.basicConfig(filename='optimal_weights.log', filemode='w',
 
 
 def calculate_optimal_weights(target_weights, component_weights):
+    '''
+    calculates optimal weights set that is needed to make any weight in the
+    target range using dynamic programming.
+    optimal set means the set with the minimal number of elements.
+    :param target_weights: iterable, weight values to make from component
+    weights
+    :param component_weights: iterable, values of component weights
+    :return: None
+    '''
     optimal_set = {}
     max_weight = max(target_weights)
     min_weight = min(component_weights)
