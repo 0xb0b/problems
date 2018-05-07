@@ -23,7 +23,7 @@ SRC_DIR := $(PROJ_DIR)/src
 TARGET_BIN := $(BUILD_DIR)/a.out
 
 # make the list of source files
-SRC_FILES := $(shell find $(SRC_DIR) -name *.cpp)
+SRC_FILES := $(shell find $(SRC_DIR) -name \*.cpp)
 OBJ_FILES := $(SRC_FILES:%.cpp=$(BUILD_DIR)/%.o)
 DEP_FILES := $(OBJ_FILES:.o=.d)
 # flags for automatic dependencies generation
@@ -56,9 +56,9 @@ $(TARGET_BIN): $(OBJ_FILES)
 # touch object file to avoid it being older than dependency file which causes
 # unnecessary rebuilds
 $(BUILD_DIR)/%.o: %.cpp
-	@mkdir -p $(dir $@)
+	mkdir -p $(dir $@)
 	$(CXX) $(DEPFLAGS) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
-	@mv -f $(BUILD_DIR)/$*.tmpd $(BUILD_DIR)/$*.d && touch $@
+	mv -f $(BUILD_DIR)/$*.tmpd $(BUILD_DIR)/$*.d && touch $@
 
 .PHONY: clean
 clean:
